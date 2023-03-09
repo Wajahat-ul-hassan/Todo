@@ -8,7 +8,6 @@ const Home = () => {
   const todoData = useSelector((state)=>state.reducer.data)
 
   const [data , setData] = useState([])
-  console.log('lll' , data)
   const [editData , setEditData] = useState(false)
   const dispatch = useDispatch()
 
