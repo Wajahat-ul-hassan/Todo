@@ -2,7 +2,7 @@ import { StyleSheet, Text, View , TouchableOpacity } from 'react-native'
 import React from 'react'
 import {Button} from '../index'
 const Card = (props) => {
-    const {onpressedit , onpressdelete , text} = props
+    const {onpressedit , onpressdelete , text , editData} = props
   return (
     <View style={styles.mainCardConatiner}>
       <Text style={{flex:1 , paddingHorizontal:10}}>{text}</Text>

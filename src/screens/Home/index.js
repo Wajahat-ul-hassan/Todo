@@ -8,26 +8,40 @@ const Home = () => {
   const todoData = useSelector((state)=>state.reducer.data)
 
   const [data , setData] = useState([])
+  console.log(data)
   const [editData , setEditData] = useState(false)
   const dispatch = useDispatch()
 
   useEffect(()=>{
-   !todoData ? dispatch(getData(calback) ): 
-     setData(todoData)
+  //  !todoData ? dispatch(getData(calback) ): 
+    //  setData(todoData)
   },[])
 
   const calback = (res) => {
-  setData(res)
+  // setData(res)
   }
 
-  const handleSubmit = (val) => {
-    const abc = {};
-    const newid =  data?.length || 0
-    abc.id = newid + 1
-    abc.title = val.item
-    data.unshift(abc)
-    setEditData(!editData)
-
+  const handleSubmit = (val , id) => {
+    console.log("🚀 ~ file: index.js:24 ~ handleSubmit ~ val:", val)
+    // if(id !== undefined){
+    //   console.log("🚀 ~ file: index.js:24 ~ handleSubmit ~ val , id:", val , id)
+    //   const fff = data.map((item) => {
+    //     if(item.id == id) return {...item , title:val?.item}
+    //     return item
+      	
+    //   })
+    //   console.log("🚀 ~ file: index.js:26 ~ fff ~ item:", fff)
+    //   setData(fff)
+    // }else{
+      console.log('bbbbbbbbb')
+      const abc = {};
+      const newid =  data?.length || 0
+      abc.id = newid + 1
+      abc.title = val.item
+      data.unshift(abc)
+      setEditData(!editData)
+      console.log("🚀 ~ file: index.js:37 ~ handleSubmit ~ abc:", abc)
+    // }
   }
 
   const handleDelete = (id) => {
@@ -43,7 +57,6 @@ const Home = () => {
      if(val.id == id) return val
      return
    })
-   console.log('drftgyhu',edit)
    setEditData(edit?.[0])
   }
 
@@ -52,6 +65,7 @@ const Home = () => {
       <Form 
       submit={handleSubmit}
       edit={editData?.title}
+      id={editData?.id}
        />
          <ScrollView showsVerticalScrollIndicator={false}>
       {data?.length > 0 && 
@@ -62,7 +76,7 @@ const Home = () => {
           <Card 
           text={title}
           onpressdelete={()=>handleDelete(id)}
-          // onpressedit={()=>handleEdit(id)}
+          onpressedit={()=>handleEdit(id)}
           />
           )
         })}
