@@ -46,7 +46,6 @@ class ApiSauce {
                 Authorization: `Bearer ${token}`,
             },
         };
-        console.log("firstfirstfirstfirstfirstfirstfirst", url, token);
         const response = await api.get(url, {}, Header);
         return new Promise((resolve, reject) => {
             this.handlePromise(resolve, reject, response);
@@ -54,10 +53,6 @@ class ApiSauce {
     }
 
     async deleteWithToken(url, token) {
-        console.log(
-            "🚀 ~ file: network.js ~ line 70 ~ ApiSauce ~ deleteWithToken ~ url",
-            url
-        );
         const Header = {
             headers: {
                 "Content-Type": "application/json",

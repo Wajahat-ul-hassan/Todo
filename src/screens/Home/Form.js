@@ -1,35 +1,23 @@
-import React, { useRef, memo, useEffect, useState } from "react";
+import React, { useRef, memo } from "react";
 import { Formik } from "formik";
 import Validations from "./Validations";
-import { Text, View } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
+import { Text } from "react-native";
 import {Input} from '../../components'
 function CForm(props) {
-    const [currentLanguage,setLanguage] = useState('ar');
     const {
         submit,
         edit,
         id
     } = props;
-        console.log("🚀 ~ file: Form.js:13 ~ CForm ~ edit:", edit)
-
-    const dispatch = useDispatch()
-    const reduxState = useSelector(({  language }) => {
-        return {
-  
-            language: language?.language?.lan
-        };
-    });
     const form = useRef(null);
-    useEffect(()=>{
-        // setFieldValue('item' , 'jhjhjk')
-    },[])
-    
-
     return (
         <Formik
             innerRef={form}
-            onSubmit={(values) => submit(values , id)}
+            onSubmit={(values, {setSubmitting, resetForm}) => {
+                submit(values , id)
+                resetForm()
+                setSubmitting(false);
+            }}
             enableReinitialize={true}
             initialValues={{
                 item: edit ? edit : ''
@@ -44,6 +32,7 @@ function CForm(props) {
                       value={values.item}
                        placeholder='enter a item'
                        onPress={()=>handleSubmit()}
+                       Txt={edit ? 'Edit' : 'Add'}
                       />
                       <Text>
                       {errors.item}

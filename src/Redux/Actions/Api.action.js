@@ -6,7 +6,6 @@ export const getData = (CB) => async (dispatch) => {
     dispatch({ type: AUTH.DATA_API});
     try {
         let response = await ApiSauce.getWithoutToken(GET_TODO_DATA);
-        console.log('/////////' , response)
             dispatch({
                 type: AUTH.DATA_API,
                 data: response,
@@ -16,6 +15,21 @@ export const getData = (CB) => async (dispatch) => {
         alert(error);
     }
 };
+
+export const addData = (data) => {
+    return{
+        type:AUTH.ADD_DATA,
+        payload:data
+    }
+}
+
+export const deleteData = (data) =>{
+    return{
+        type:AUTH.DELETE_DATA,
+        payload:data
+
+    }
+}
 
 
 

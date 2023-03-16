@@ -2,7 +2,7 @@ import { StyleSheet, Text, View , TextInput , TouchableOpacity } from 'react-nat
 import React from 'react'
 
 const Input = (props) => {
-    const {onChange , value , placeholder , placeholderTextColor , inputStyle , onPress } = props;
+    const {onChange , value , placeholder ,Txt, placeholderTextColor , inputStyle , onPress } = props;
   return (
     <View style={[styles.inputMainContainer]}>
         <TextInput 
@@ -13,7 +13,7 @@ const Input = (props) => {
          style={[styles.Input , inputStyle]}
          />
          <TouchableOpacity style={[styles.inputBtn]} onPress={onPress}>
-            <Text style={[styles.btnTxt]}>Add</Text>
+            <Text style={[styles.btnTxt]}>{Txt}</Text>
          </TouchableOpacity>
          
     </View>
