@@ -1,7 +1,10 @@
 import AUTH from "../Constants/data";
+const initial = {
+    data: []
+}
 
-export default (state = [], action = {}) => {
-    console.log('/////////' , state)
+export default (state = initial, action = {}) => {
+    console.log('/////////' , action.payload , state)
     switch (action.type) {
         case AUTH.DATA_API:
             return {
@@ -9,10 +12,12 @@ export default (state = [], action = {}) => {
                 data: action.data
             };
             case AUTH.ADD_DATA:
-            return {
-                ...state,
-                data: [...state.data , {id:action.payload.id,title:action.payload.title} ]
-            };
+                const abc = action.payload
+                const def = [...state.data , abc]
+                return {
+                    ...state,
+                    data: def
+                   }
             case AUTH.DELETE_DATA:
             return {
                 ...state,

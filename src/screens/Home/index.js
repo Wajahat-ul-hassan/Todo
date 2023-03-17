@@ -12,23 +12,23 @@ const Home = () => {
   const dispatch = useDispatch()
 
   const handleSubmit = (val , id) => {
-    if(id !== undefined){
-      const fff = data.map((item) => {
-        if(item.id == id) return {...item , title:val?.item}
-        return item
+    // if(id !== undefined){
+    //   const fff = data.map((item) => {
+    //     if(item.id == id) return {...item , title:val?.item}
+    //     return item
       	
-      })
-      setData(fff)
-      setEditData(false)
-    }else{
+    //   })
+    //   setData(fff)
+    //   setEditData(false)
+    // }else{
       const abc = {};
       const newid =  data?.length || 0
       abc.id = newid + 1
       abc.title = val.item
-      data.unshift(abc)
+      // data.unshift(abc)
       setEditData(!editData)
       dispatch(addData(abc))
-    }
+    // }
   }
 
   const handleDelete = (id) => {
