@@ -10,7 +10,7 @@ export const getData = (CB) => async (dispatch) => {
                 type: AUTH.DATA_API,
                 data: response,
             });
-            CB(response)
+            // CB(response)
     } catch (error) {
         alert(error);
     }

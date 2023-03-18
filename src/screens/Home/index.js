@@ -3,7 +3,7 @@ import React, {useState , useEffect} from 'react'
 import {Input , Card} from '../../components'
 import Form from './Form';
 import { useDispatch , useSelector } from 'react-redux';
-import { deleteData , addData , updateData} from '../../Redux/Actions/Api.action';
+import { deleteData , addData , updateData , getData} from '../../Redux/Actions/Api.action';
 const Home = () => {
   const dispatch = useDispatch()
   const redux = useSelector(({reducer})=>{
@@ -18,6 +18,10 @@ const Home = () => {
   useEffect(()=>{
     setData(redux.data)
   },[redux.data])
+
+  useEffect(()=>{
+   data?.length == 0 && dispatch(getData())
+  },[])
 
   const handleSubmit = (val , id) => {
     if(id !== undefined){
