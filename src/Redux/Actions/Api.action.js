@@ -31,6 +31,14 @@ export const deleteData = (data) =>{
     }
 }
 
+export const updateData = (val , id) => {
+    return{
+        type:AUTH.UPDATE_DATA,
+        payload:val,
+        id:id
+    }
+}
+
 
 
 

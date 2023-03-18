@@ -3,40 +3,37 @@ import React, {useState , useEffect} from 'react'
 import {Input , Card} from '../../components'
 import Form from './Form';
 import { useDispatch , useSelector } from 'react-redux';
-import { getData , addData} from '../../Redux/Actions/Api.action';
+import { deleteData , addData , updateData} from '../../Redux/Actions/Api.action';
 const Home = () => {
-  const todoData = useSelector((state)=>state.reducer.data)
+  const dispatch = useDispatch()
+  const redux = useSelector(({reducer})=>{
+    return{
+      data:reducer.data
+    }
+  })
 
   const [data , setData] = useState([])
   const [editData , setEditData] = useState(false)
-  const dispatch = useDispatch()
+
+  useEffect(()=>{
+    setData(redux.data)
+  },[redux.data])
 
   const handleSubmit = (val , id) => {
-    // if(id !== undefined){
-    //   const fff = data.map((item) => {
-    //     if(item.id == id) return {...item , title:val?.item}
-    //     return item
-      	
-    //   })
-    //   setData(fff)
-    //   setEditData(false)
-    // }else{
+    if(id !== undefined){
+      dispatch(updateData(val , id))
+      setEditData(false)
+    }else{
       const abc = {};
       const newid =  data?.length || 0
       abc.id = newid + 1
       abc.title = val.item
-      // data.unshift(abc)
-      setEditData(!editData)
       dispatch(addData(abc))
-    // }
+    }
   }
 
-  const handleDelete = (id) => {
-   const remove = data.filter((val)=>{
-    if(val.id !== id) return val
-    return 
-   })
-   setData(remove)
+  const handleDelete = (val) => {
+  dispatch(deleteData(val))
   }
 
   const handleEdit = (id) => {
@@ -61,7 +58,7 @@ const Home = () => {
         return(
           <Card 
           text={title}
-          onpressdelete={()=>handleDelete(id)}
+          onpressdelete={()=>handleDelete(val)}
           onpressedit={()=>handleEdit(id)}
           />
           )
